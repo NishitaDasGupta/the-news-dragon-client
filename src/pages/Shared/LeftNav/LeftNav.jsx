@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LeftNav.css'
+import LeftEditorialInsight from '../LeftEditorialInsight/LeftEditorialInsight';
+
 const LeftNav = () => {
     const [categories, setCategories] = useState([]);
 
@@ -12,20 +14,23 @@ const LeftNav = () => {
 
     }, [])
     return (
-        <div>
+    <div>
+            <div>
             <h4 className='my-4' >All Caterogy</h4>
             <div >   
                 {
                     categories.map(
                         category =>
                         <p key={category.id}>
-                            <Link className='category-link text-decoration-none text-black' to={`/categories/${category.id}`}>
+                            <Link className='category-link text-decoration-none text-black' to={`/category/${category.id}`}>
                             {category.name}</Link>
                         </p>  
                         )
                 }
             </div>
         </div>
+       <LeftEditorialInsight></LeftEditorialInsight>
+    </div>
     );
 };
 
