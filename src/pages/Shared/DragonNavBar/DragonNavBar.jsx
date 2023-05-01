@@ -4,7 +4,13 @@ import { FaUserCircle } from 'react-icons/fa';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { AuthContext } from '../../../providers/AuthProviders';
 const DragonNavBar = () => {
-    const { user } = useContext(AuthContext);
+    const { user,signOutUser } = useContext(AuthContext);
+    const handleLogOut = () => {
+        signOutUser()
+        .then(()=> {})
+        .catch(()=> {}) 
+
+    }
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -20,11 +26,16 @@ const DragonNavBar = () => {
                     </Nav>
                     <Nav>
                         {user &&
-                            <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle>}
+                           <>
+                            <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle>
+                            <p>
+                            {user.email}
+                            </p>
+                           </>}
 
                         {
                             user ?
-                                <Button variant="secondary">LogOut</Button> :
+                                <Button onClick={handleLogOut} variant="secondary">LogOut</Button> :
                                 <Link to='/login'><Button variant="secondary">LogIn</Button></Link>
                         }
 
